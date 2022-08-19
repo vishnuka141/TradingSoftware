@@ -1,0 +1,274 @@
+{%extends 'dashboard-home.html'%}
+{%load static%}
+{%block content%}
+<div class="d-flex justify-content-between mt-3 mb-3">
+  <div><h3 class="container mt-3">Quotation</h3></div>
+  <div>
+  <a class="btn btn-primary" href="{%url 'q-new'%}" >
+              <i class="bi bi-plus-circle"></i> Create Quotation
+            </a>
+  </div>
+</div>
+
+<div class="card mb-3 mb-lg-5">
+        <!-- Header -->
+        <div class="card-header">
+          <div class="row justify-content-between align-items-center flex-grow-1">
+            <div class="col-md">
+              <div class="d-flex justify-content-between align-items-center">
+                <h4 class="card-header-title">Users</h4>
+
+                <!-- Datatable Info -->
+                <div id="datatableCounterInfo" style="display: none;">
+                  <div class="d-flex align-items-center">
+                    <span class="fs-6 me-3">
+                      <span id="datatableCounter">0</span>
+                      Selected
+                    </span>
+                    <a class="btn btn-outline-danger btn-sm" href="javascript:;">
+                      <i class="tio-delete-outlined"></i> Delete
+                    </a>
+                  </div>
+                </div>
+                <!-- End Datatable Info -->
+              </div>
+            </div>
+            <!-- End Col -->
+
+            <div class="col-auto">
+              <!-- Filter -->
+              <div class="row align-items-sm-center">
+                <div class="col-sm-auto">
+                  <div class="row align-items-center gx-0">
+                    <div class="col">
+                      <span class="text-secondary me-2">Status:</span>
+                    </div>
+                    <!-- End Col -->
+
+                    <div class="col-auto">
+                      <!-- Select -->
+                      <div class="tom-select-custom tom-select-custom-end">
+                        <select class="js-select js-datatable-filter form-select form-select-sm form-select-borderless" data-target-column-index="2" data-target-table="datatable" autocomplete="off" data-hs-tom-select-options='{
+                                  "searchInDropdown": false,
+                                  "hideSearch": true,
+                                  "dropdownWidth": "10rem"
+                                }'>
+                          <option value="null" selected>All</option>
+                          <option value="successful">Successful</option>
+                          <option value="overdue">Overdue</option>
+                          <option value="pending">Pending</option>
+                        </select>
+                      </div>
+                      <!-- End Select -->
+                    </div>
+                    <!-- End Col -->
+                  </div>
+                  <!-- End Row -->
+                </div>
+                <!-- End Col -->
+
+
+                <!-- End Col -->
+
+                <div class="col-md">
+                  <form>
+                    <!-- Search -->
+                    <div class="input-group input-group-merge input-group-flush">
+                      <div class="input-group-prepend input-group-text">
+                        <i class="bi-search"></i>
+                      </div>
+                      <input id="datatableSearch" type="search" class="form-control" placeholder="Search users" aria-label="Search users">
+                    </div>
+                    <!-- End Search -->
+                  </form>
+                </div>
+                <!-- End Col -->
+              </div>
+              <!-- End Filter -->
+            </div>
+            <!-- End Col -->
+          </div>
+          <!-- End Row -->
+        </div>
+        <!-- End Header -->
+
+        <!-- Table -->
+        <div class="table-responsive datatable-custom">
+          <table id="datatable" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table" data-hs-datatables-options='{
+                   "columnDefs": [{
+                      "targets": [0, 1, 4],
+                      "orderable": false
+                    }],
+                   "order": [],
+                   "info": {
+                     "totalQty": "#datatableWithPaginationInfoTotalQty"
+                   },
+                   "search": "#datatableSearch",
+                   "entries": "#datatableEntries",
+                   "pageLength": 8,
+                   "isResponsive": false,
+                   "isShowPaging": false,
+                   "pagination": "datatablePagination"
+                 }'>
+            <thead class="thead-light">
+              <tr>
+                <th scope="col" class="table-column-pe-0">
+                  <div class="form-check">
+<!--                    <input class="form-check-input" type="checkbox" value="" id="datatableCheckAll">-->
+                    <label class="form-check-label" for="datatableCheckAll"></label>
+                  </div>
+                </th>
+                <th class="table-column-ps-0">customer name</th>
+                <th>Status</th>
+                <th>Quote start date</th>
+                <th>Quote end date</th>
+                <th>action</th>
+              </tr>
+            </thead>
+
+            <tbody>
+<tr>
+                <td class="table-column-pe-0">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="usersDataCheck2">
+                    <label class="form-check-label" for="usersDataCheck2"></label>
+                  </div>
+                </td>
+                <td class="table-column-ps-0">
+                  <a class="d-flex align-items-center" href="user-profile.html">
+                    <div class="flex-shrink-0">
+                      <div class="avatar avatar-sm avatar-circle">
+                        <img class="avatar-img" src="{%static 'assets/img/160x160/img10.jpg' %}" alt="Image Description">
+                      </div>
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                      <h5 class="text-inherit mb-0">Amanda Harvey <i class="bi-patch-check-fill text-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Top endorsed"></i></h5>
+                    </div>
+                  </a>
+                </td>
+                <td>
+                  <span class="legend-indicator bg-success"></span>Successful
+                </td>
+                <td>Unassigned</td>
+                 <td></td>
+              <td>
+                  <div class="btn-group" role="group">
+                    <a class="btn btn-white btn-sm" href="ecommerce-product-details.html">
+                      <i class="bi-pencil-fill me-1"></i> Edit
+                    </a>
+
+                    <!-- Button Group -->
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-white btn-icon btn-sm dropdown-toggle dropdown-toggle-empty" id="productsEditDropdown1" data-bs-toggle="dropdown" aria-expanded="false"></button>
+
+                      <div class="dropdown-menu dropdown-menu-end mt-1" aria-labelledby="productsEditDropdown1">
+                        <a class="dropdown-item" href="#">
+                          <i class="bi-trash dropdown-item-icon"></i> Delete
+                        </a>
+                        <a class="dropdown-item" href="#">
+                          <i class="bi-archive dropdown-item-icon"></i> View
+                        </a>
+                      </div>
+                    </div>
+                    <!-- End Button Group -->
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="table-column-pe-0">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="usersDataCheck2">
+                    <label class="form-check-label" for="usersDataCheck2"></label>
+                  </div>
+                </td>
+                <td class="table-column-ps-0">
+                  <a class="d-flex align-items-center" href="user-profile.html">
+                    <div class="flex-shrink-0">
+                      <div class="avatar avatar-sm avatar-circle">
+                        <img class="avatar-img" src="{%static 'assets/img/160x160/img10.jpg' %}" alt="Image Description">
+                      </div>
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                      <h5 class="text-inherit mb-0">Amanda Harvey <i class="bi-patch-check-fill text-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Top endorsed"></i></h5>
+                    </div>
+                  </a>
+                </td>
+                <td>
+                  <span class="legend-indicator bg-success"></span>Successful
+                </td>
+                <td>Unassigned</td>
+                 <td></td>
+              <td>
+                  <div class="btn-group" role="group">
+                    <a class="btn btn-white btn-sm" href="ecommerce-product-details.html">
+                      <i class="bi-pencil-fill me-1"></i> Edit
+                    </a>
+
+                    <!-- Button Group -->
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-white btn-icon btn-sm dropdown-toggle dropdown-toggle-empty" id="productsEditDropdown1" data-bs-toggle="dropdown" aria-expanded="false"></button>
+
+                      <div class="dropdown-menu dropdown-menu-end mt-1" aria-labelledby="productsEditDropdown1">
+                        <a class="dropdown-item" href="#">
+                          <i class="bi-trash dropdown-item-icon"></i> Delete
+                        </a>
+                        <a class="dropdown-item" href="#">
+                          <i class="bi-archive dropdown-item-icon"></i> View
+                        </a>
+                      </div>
+                    </div>
+                    <!-- End Button Group -->
+                  </div>
+                </td>
+              </tr>
+
+
+
+            </tbody>
+          </table>
+        </div>
+        <!-- End Table -->
+
+        <!-- Footer -->
+        <div class="card-footer">
+          <!-- Pagination -->
+          <div class="row justify-content-center justify-content-sm-between align-items-sm-center">
+            <div class="col-sm mb-2 mb-sm-0">
+              <div class="d-flex justify-content-center justify-content-sm-start align-items-center">
+<!--                <span class="me-2">Showing:</span>-->
+
+                <!-- Select -->
+<!--                <div class="tom-select-custom">-->
+<!--                  <select id="datatableEntries" class="js-select form-select form-select-borderless w-auto" autocomplete="off" data-hs-tom-select-options='{-->
+<!--                            "searchInDropdown": false,-->
+<!--                            "hideSearch": true-->
+<!--                          }'>-->
+<!--                    <option value="4">4</option>-->
+<!--                    <option value="6">6</option>-->
+<!--                    <option value="8" selected>8</option>-->
+<!--                    <option value="12">12</option>-->
+<!--                  </select>-->
+<!--                </div>-->
+                <!-- End Select -->
+
+<!--                <span class="text-secondary me-2">of</span>-->
+
+                <!-- Pagination Quantity -->
+<!--                <span id="datatableWithPaginationInfoTotalQty"></span>-->
+              </div>
+            </div>
+            <!-- End Col -->
+
+            <div class="col-sm-auto">
+              <div class="d-flex justify-content-center justify-content-sm-end">
+                <!-- Pagination -->
+                <nav id="datatablePagination" aria-label="Activity pagination"></nav>
+              </div>
+            </div>
+            <!-- End Col -->
+          </div>
+          <!-- End Pagination -->
+        </div>
+        <!-- End Footer -->
+      </div>
+{%endblock%}
